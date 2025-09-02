@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes float {
+  0% { 
+    transform: translateY(0) rotate(0deg) scale(1); 
+  }
+  33% { 
+    transform: translateY(-15px) rotate(3deg) scale(1.05); 
+  }
+  66% { 
+    transform: translateY(-10px) rotate(-2deg) scale(0.98); 
+  }
+  100% { 
+    transform: translateY(0) rotate(0deg) scale(1); 
+  }
+}
+
+.animate-float {
+  animation: float infinite ease-in-out;
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🌸 Pastel background for the whole site */
+body {
+  @apply bg-[#E0F7F4]; /* Light pastel peach */
+}
