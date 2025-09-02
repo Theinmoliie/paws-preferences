@@ -2,7 +2,7 @@ import React from "react";
 
 const ResultScreen = ({ likedCats, totalCats, onRestart }) => {
   return (
-    <div className="p-8 text-center max-w-md w-full mx-auto bg-white/90 rounded-3xl shadow-2xl backdrop-blur-sm border border-pink-200">
+    <div className="p-8 text-center max-w-md w-full mx-auto bg-white/90 rounded-3xl shadow-2xl backdrop-blur-sm ">
       <h2 className="text-4xl font-extrabold mb-4 text-gray-800 drop-shadow-sm">
         Your Purr-file 🐾
       </h2>

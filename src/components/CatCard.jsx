@@ -1,8 +1,8 @@
-// src/components/CatCard.jsx - AESTHETIC UPDATE
-import React from 'react';
-import { useSpring, animated } from '@react-spring/web';
-import { useDrag } from '@use-gesture/react';
-import { Heart, X } from 'lucide-react';
+// src/components/CatCard.jsx - SWIPE ICON UPDATE
+import React from "react";
+import { useSpring, animated } from "@react-spring/web";
+import { useDrag } from "@use-gesture/react";
+import { Heart, ThumbsDown } from "lucide-react"; // ✅ Changed X to ThumbsDown
 
 const CatCard = ({ cat, onSwipe, index, isTopCard }) => {
   const [{ x, rot, scale }, api] = useSpring(() => ({
@@ -17,7 +17,7 @@ const CatCard = ({ cat, onSwipe, index, isTopCard }) => {
       if (!isTopCard) return;
 
       const isSwiped = Math.abs(mx) > 200 || (Math.abs(mx) > 100 && vx > 0.5);
-      const direction = xDir < 0 ? 'left' : 'right';
+      const direction = xDir < 0 ? "left" : "right";
 
       if (!active && isSwiped) {
         api.start({
@@ -48,44 +48,46 @@ const CatCard = ({ cat, onSwipe, index, isTopCard }) => {
         rotate: rot.to((rotVal) => `${rotVal}deg`),
         scale,
         zIndex: -index,
-        position: 'absolute',
-        willChange: 'transform',
+        position: "absolute",
+        willChange: "transform",
       }}
       className={`
         absolute
         w-[300px] h-[300px]
-        bg-cat-bg-light rounded-2xl shadow-xl flex items-center justify-center // ✅ Rounded-2xl, shadow-xl
-        ${!isTopCard ? 'pointer-events-none opacity-70 scale-95 translate-y-[-10px]' : ''}
+        bg-cat-bg-light rounded-2xl shadow-xl flex items-center justify-center
+        ${
+          !isTopCard
+            ? "pointer-events-none opacity-70 scale-95 translate-y-[-10px]"
+            : ""
+        }
         transition-all duration-300 ease-out
         overflow-hidden
         left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
-        border-4 border-white/50 // ✅ Subtle border
       `}
     >
-      
       <img
         src={cat.url}
         alt="Cute Cat"
-        className="w-full h-full object-cover rounded-xl" // ✅ object-cover, rounded-xl, removed bg-black
+        className="w-full h-full object-cover rounded-xl"
         draggable="false"
       />
 
       {isTopCard && (
         <>
-          {/* Heart when swiping right */}
+          {/* Red Heart when swiping right */}
           <animated.div
             style={{ opacity: x.to([0, 120], [0, 1]) }}
-            className="absolute top-6 left-6 text-green-500 pointer-events-none drop-shadow-md" // ✅ drop-shadow
+            className="absolute top-6 left-6 pointer-events-none drop-shadow-md"
           >
-            <Heart size={60} strokeWidth={2.5} /> {/* ✅ Thicker stroke */}
+            <Heart size={60} fill="#ef4444" /> //
           </animated.div>
 
-          {/* X when swiping left */}
+          {/* Blue Thumbs Down when swiping left */}
           <animated.div
             style={{ opacity: x.to([0, -120], [0, 1]) }}
-            className="absolute top-6 right-6 text-red-500 pointer-events-none drop-shadow-md" // ✅ drop-shadow
+            className="absolute top-6 right-6 pointer-events-none drop-shadow-md"
           >
-            <X size={60} strokeWidth={2.5} /> {/* ✅ Thicker stroke */}
+            <ThumbsDown size={60} fill="#3b82f6" strokeWidth={1} /> // 
           </animated.div>
         </>
       )}
